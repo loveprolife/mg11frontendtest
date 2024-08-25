@@ -39,6 +39,7 @@ async function readChatbotReply(model_type, url, content, func) {
                 if (done) {
                     break;
                 }
+                console.log("value, typeof value: ", value, typeof value)
                 const chunkValue = new TextDecoder().decode(value);
                 func(first, chunkValue)
                 first = false
