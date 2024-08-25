@@ -42,7 +42,12 @@ async function readChatbotReply(model_type, url, content, func) {
                 const chunkValue = new TextDecoder().decode(value)
                 console.log("chunkValue: ", chunkValue)
                 console.log("typeof chunkValue: ", typeof chunkValue)
-                func(first, chunkValue)
+                if(model_type === "2" || model_type === "4" || model_type === "6"){
+                    let tmp = JSON.parse(chunkValue);
+                    func(first, tmp["msg"])
+                }else{
+                    func(first, chunkValue)
+                }
                 first = false
             }
             reader.releaseLock();
