@@ -1,10 +1,33 @@
-let server_url = 'https://mgtest.learntech123.com/api/v1/agents/test_streaming?prompt='
-async function readChatbotReply(url, content, func) {
+// let server_url = 'https://mgtest.learntech123.com/api/v1/agents/chat_draft'
+let server_url = 'https://127.0.0.1:8080/api/v1/agents/chat_draft'
+function get_agent_id(model_type){
+    if(model_type === '1'){
+        return "101"
+    }
+    if(model_type === '2'){
+        return "102"
+    }
+    if(model_type === '3'){
+        return "103"
+    }
+    if(model_type === '4'){
+        return "104"
+    }
+    if(model_type === '5'){
+        return "105"
+    }
+    if(model_type === '6'){
+        return "106"
+    }
+}
+async function readChatbotReply(model_type, url, content, func) {
     console.log(content.length);
     if(content.length > 0){
-        const response = await fetch(server_url + content, {
-            method: 'GET',
+        const response = await fetch(server_url, {
+            method: 'POST',
             timeout: 15000,
+            mode: "cors",
+            body: JSON.stringify({'agent_id': get_agent_id(model_type), 'sentence': content})
         });
         const readableStream = response.body;
         if (readableStream) {
