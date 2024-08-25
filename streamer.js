@@ -22,6 +22,9 @@ function get_agent_id(model_type){
 async function readChatbotReply(model_type, url, content, func) {
     if(content.length > 0){
         const response = await fetch(server_url, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
             method: 'POST',
             timeout: 15000,
             mode: "cors",
