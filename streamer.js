@@ -1,5 +1,4 @@
 let server_url = 'https://mgtest.learntech123.com/api/v1/agents/chat_draft'
-// let server_url = 'https://127.0.0.1:8080/api/v1/agents/chat_draft'
 function get_agent_id(model_type){
     if(model_type === '1'){
         return 101
@@ -21,7 +20,6 @@ function get_agent_id(model_type){
     }
 }
 async function readChatbotReply(model_type, url, content, func) {
-    console.log(content.length);
     if(content.length > 0){
         const response = await fetch(server_url, {
             method: 'POST',
