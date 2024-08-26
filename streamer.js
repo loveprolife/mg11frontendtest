@@ -1,4 +1,4 @@
-let server_url = 'https://mgtest.learntech123.com/api/v1/agents/chat_draft'
+let server_url = 'https://mgtest.learntech123.com/byoa/api/v1/agents/chat_draft'
 function get_agent_id(model_type){
     if(model_type === '1'){
         return 101
