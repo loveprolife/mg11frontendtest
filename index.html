@@ -1,76 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>mg1.1 chat demo</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-</head>
-<body>
-<div class="chat">
-  <div class="chat-title">
-    <p>MG1.1咨询处</p>
-  </div>
-    <div>
-        <label for="model_type">模型类型: </label>
-        <select id="model_type" name="model_type">
-            <option value="0">请点击下拉框选择一种模型</option>
-            <option value="1">MG1.0流式输出</option>
-            <option value="2">MG1.0非流式输出</option>
-            <option value="3">openai流式输出</option>
-            <option value="4">openai非流式输出</option>
-            <option value="5">claude流式输出</option>
-            <option value="6">claude非流式输出</option>
-        </select>
-    </div>
-  <div class="messages" id="targetElement">
-    <div class="message ai-message">
-      <pre>你好，很高兴为你服务！</pre>
-    </div>
-  </div>
-  <div class="message-box">
-      <textarea placeholder="请在这里输入消息" id="input_question"></textarea>
-      <button onclick="goChat()">发送</button>
-  </div>
-</div>
-    <script>
-        // 对话
-        function goChat(){
-            let model_type = document.getElementById('model_type').value
-            if(model_type === '0'){
-                alert("请点击下拉框选择一种模型")
-                return false
-            }
-            let content_obj = document.getElementById('input_question')
-            let content = content_obj.value.trim()
-            if(!content){
-                return false
-            }
-            content_obj.value = ''
-            content_obj.focus()
-            insertMessage(true, content, 'my-message')
-            readChatbotReply(model_type, '', content, insertMessage)
-        }
-        function insertMessage(first, content, rule='ai-message') {
-            let targetElement = document.getElementById("targetElement");
-            if(first){
-                let tempContainer = document.createElement("div");
-                tempContainer.className = `message ${rule}`
-                tempContainer.innerHTML = "<pre>"+content+"</pre>";
-                targetElement.appendChild(tempContainer);
-            }
-            else {
-                let divElements = targetElement.querySelectorAll("div");
-                let lastDiv = divElements[divElements.length - 1];
-                if (lastDiv) {
-                    let pElement = lastDiv.querySelector("pre");
-                    if (pElement) {
-                        pElement.textContent += content
-                    }
-                }
-            }
-        }
-    </script>
-    <script src="streamer.js"></script>
-</body>
-</html>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>mg1.1 chat demo</title>-->
+<!--    <link rel="stylesheet" type="text/css" href="style.css">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="chat">-->
+<!--  <div class="chat-title">-->
+<!--    <p>MG1.1咨询处</p>-->
+<!--  </div>-->
+<!--    <div>-->
+<!--        <label for="model_type">模型类型: </label>-->
+<!--        <select id="model_type" name="model_type">-->
+<!--            <option value="0">请点击下拉框选择一种模型</option>-->
+<!--            <option value="1">MG1.0流式输出</option>-->
+<!--            <option value="2">MG1.0非流式输出</option>-->
+<!--            <option value="3">openai流式输出</option>-->
+<!--            <option value="4">openai非流式输出</option>-->
+<!--            <option value="5">claude流式输出</option>-->
+<!--            <option value="6">claude非流式输出</option>-->
+<!--        </select>-->
+<!--    </div>-->
+<!--  <div class="messages" id="targetElement">-->
+<!--    <div class="message ai-message">-->
+<!--      <pre>你好，很高兴为你服务！</pre>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="message-box">-->
+<!--      <textarea placeholder="请在这里输入消息" id="input_question"></textarea>-->
+<!--      <button onclick="goChat()">发送</button>-->
+<!--  </div>-->
+<!--</div>-->
+<!--    <script>-->
+<!--        // 对话-->
+<!--        function goChat(){-->
+<!--            let model_type = document.getElementById('model_type').value-->
+<!--            if(model_type === '0'){-->
+<!--                alert("请点击下拉框选择一种模型")-->
+<!--                return false-->
+<!--            }-->
+<!--            let content_obj = document.getElementById('input_question')-->
+<!--            let content = content_obj.value.trim()-->
+<!--            if(!content){-->
+<!--                return false-->
+<!--            }-->
+<!--            content_obj.value = ''-->
+<!--            content_obj.focus()-->
+<!--            insertMessage(true, content, 'my-message')-->
+<!--            readChatbotReply(model_type, '', content, insertMessage)-->
+<!--        }-->
+<!--        function insertMessage(first, content, rule='ai-message') {-->
+<!--            let targetElement = document.getElementById("targetElement");-->
+<!--            if(first){-->
+<!--                let tempContainer = document.createElement("div");-->
+<!--                tempContainer.className = `message ${rule}`-->
+<!--                tempContainer.innerHTML = "<pre>"+content+"</pre>";-->
+<!--                targetElement.appendChild(tempContainer);-->
+<!--            }-->
+<!--            else {-->
+<!--                let divElements = targetElement.querySelectorAll("div");-->
+<!--                let lastDiv = divElements[divElements.length - 1];-->
+<!--                if (lastDiv) {-->
+<!--                    let pElement = lastDiv.querySelector("pre");-->
+<!--                    if (pElement) {-->
+<!--                        pElement.textContent += content-->
+<!--                    }-->
+<!--                }-->
+<!--            }-->
+<!--        }-->
+<!--    </script>-->
+<!--    <script src="streamer.js"></script>-->
+<!--</body>-->
+<!--</html>-->
