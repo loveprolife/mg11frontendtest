@@ -1,4 +1,3 @@
-let server_url = 'https://mgtest.learntech123.com/byoa/api/v1/agents/chat_draft'
 function get_agent_id(model_type){
     if(model_type === '1'){
         return 101
@@ -20,6 +19,10 @@ function get_agent_id(model_type){
     }
 }
 async function readChatbotReply(model_type, url, content, func) {
+    let server_url = 'https://mgtest.learntech123.com/byoa/api/v1/agents/chat_draft'
+    if(model_type === '1' || model_type === '2'){
+        server_url = 'http://124.221.36.241:9025/byoa/api/v1/agents/chat_draft'
+    }
     if(content.length > 0){
         const response = await fetch(server_url, {
             headers: {
