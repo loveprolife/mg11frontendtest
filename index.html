@@ -82,10 +82,11 @@
 <button onclick="test()">click test</button>
 <script>
     function test(){
-        fetch('http://127.0.0.1:8080/byoa/api/v1/agents/create_agent', {
-            method: 'POST',
+        fetch('http://127.0.0.1:8080/byoa/api/v1/agents/get_agent_list?page_num=1&page_size=5&title=a', {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                'x-mdc-userid': 'abc123aaa',
             },
             body: JSON.stringify({
                 "title": "aaa",
